@@ -4,7 +4,7 @@ Project realized as part of the course *Discrete Optimization* given by **Quenti
 
 ## Languages
 
-This project has been developed using [Julia](https://julialang.org/).
+This project has been developed using [Julia 1.5](https://julialang.org/).
 
 ## Authors
 
