@@ -1,0 +1,468 @@
+GEO Acc.	Title
+GSE473	PGA Human CD4+ Lymphocytes
+GSE635	Identification of novel genomic determinants of cellular drug resistance in acute lymphoblastic leukemia.
+GSE643	ASP sensitive all ALL
+GSE648	VCR sensitive all ALL
+GSE649	VCR resistant all ALL
+GSE650	DNR sensitive all ALL
+GSE653	ASP sensitive B-ALL
+GSE654	ASP resistant B-ALL
+GSE655	PRED sensitive B-ALL
+GSE657	VCR sensitive B-ALL
+GSE658	VCR resistant B-ALL
+GSE659	DNR sensitive B-ALL
+GSE974	Left ventricular apex samples
+GSE982	Gene Expression-Based High Throughput Screening: HL-60 Cell Treatment with Candidate Compounds
+GSE1133	tissue-specific pattern of mRNA expression
+GSE1420	Barrett's esophagus, Barrett's-associated adenocarcinomas and normal esophageal epithelium
+GSE1456	Gene expression of breast cancer tissue in a large population-based cohort of Swedish patients
+GSE1577	T-ALL and T-lymphoblastic lymphoma
+GSE1729	Gene expression profile of acute myeloid leukemia
+GSE2034	Breast cancer relapse free survival
+GSE2113	Plasma cell dyscrasias expression profiles associated with distinct IGH translocations in multiple myeloma
+GSE2280	Prediction of lymphatic metastasis from primary squamous cell carcinoma of the oral cavity
+GSE2328	Application of genome-wide expression analysis to human health & disease
+GSE2351	chemotherapy cross-resistance and treatment response in childhood acute lymphoblastic leukemia
+GSE2842	Additional systems to Prednisolone treated childhood ALL samples
+GSE3218	Expression Profiling of Adult Male Germ Cell Tumors
+GSE3218	Expression Profiling of Adult Male Germ Cell Tumors
+GSE3284	A network-based analysis of systemic inflammation in humans
+GSE3284	A network-based analysis of systemic inflammation in humans
+GSE3307	Comparative profiling in 13 muscle disease groups
+GSE3307	Comparative profiling in 13 muscle disease groups
+GSE3526	Comparison of gene expression profiles across the normal human body
+GSE3911	60 samples obtained at relapse
+GSE4045	Classification of serrated colorectal tumors
+GSE4127	Anticancer drug clustering in lung cancer based on gene expression profiles and sensitivity database
+GSE4127	Anticancer drug clustering in lung cancer based on gene expression profiles and sensitivity database
+GSE4183	Inflammation, adenoma and cancer: objective classification of colon biopsy specimens with gene expression signature
+GSE4183	Inflammation, adenoma and cancer: objective classification of colon biopsy specimens with gene expression signature
+GSE4271	Molecular subclasses of high-grade glioma: prognosis, disease progression, and neurogenesis
+GSE4271	Molecular subclasses of high-grade glioma: prognosis, disease progression, and neurogenesis
+GSE4475	A Biologic Definition of Burkitt's Lymphoma from Transcriptional and Genomic Profiling
+GSE4475	A Biologic Definition of Burkitt's Lymphoma from Transcriptional and Genomic Profiling
+GSE4885	Role of coactivator SRC-1/NcoA-1 for IL-6 target gene induction in HepG2 cells
+GSE5090	PCOS patients vs control subjects
+GSE5287	Prediction of response and survival following chemotherapy in patients with advanced bladder cancer
+GSE5418	Gene Expression Analysis in Malaria Infection
+GSE5462	Letrozole (Femara) early response to treatment
+GSE5462	Letrozole (Femara) early response to treatment
+GSE5580	Cell Specific Expression & Pathway Analyses Reveal Novel Alterations in Trauma-Related Human T-Cell & Monocyte Pathways
+GSE5667	Transcription data from Normal Skin and Nonlesional and Lesional Atopic Dermatitis/Eczema Skin
+GSE5667	Transcription data from Normal Skin and Nonlesional and Lesional Atopic Dermatitis/Eczema Skin
+GSE5675	Pilocytic astrocytoma
+GSE5787	Survey of Intra- and Inter-Tumour Heterogeneity of Gene Expression in Cervical Cancer
+GSE5808	Changes in PBMC Gene Expression During Acute Measles
+GSE5847	Tumor and stroma from breast by LCM
+GSE5847	Tumor and stroma from breast by LCM
+GSE6008	Human ovarian tumors and normal ovaries
+GSE6008	Human ovarian tumors and normal ovaries
+GSE6008	Human ovarian tumors and normal ovaries
+GSE6011	Expression data from quadriceps muscle of young DMD patients and age matched controls
+GSE6095	Diagnosis of Acute Lung Rejection by Gene Expression Profiling of Bronchoalveolar Lavage Cells
+GSE6269	Gene expression patterns in blood leukocytes discriminate patients with acute infections
+GSE6280	Expression data for normal and tumor kidneys
+GSE6365	Distinct transcriptional and genetic features associated with chromosome 13 deletion in multiple myeloma
+GSE6401	Up-regulation of translational machinery and distinct genetic subgroups characterize hyperdiploidy in multiple myeloma
+GSE6477	Expression data from different stages of plasma cell neoplasm
+GSE6477	Expression data from different stages of plasma cell neoplasm
+GSE6596	Comparison of gene expression data from human and mouse breast cancers: Identification of conserved breast tumor genes
+GSE6613	Parkinson's disease vs. controls, whole blood
+GSE6740	Comparison of transcriptional profiles of CD4+ and CD8+ T cells from HIV-infected pateints and uninfected control group
+GSE6764	Genome-wide molecular profiles of HCV-induced dysplasia and hepatocellular carcinoma
+GSE6914	Gene expression associated with gemcitabine resistance and its reversal by bexarotene
+GSE6956	Tumor Immunobiological Differences in Prostate Cancer between African-American and European-American Men
+GSE7055	Expression of microRNAs and Protein-coding Genes Associated with Perineural Invasion in Prostate Cancer
+GSE7127	63 Melanoma cell lines
+GSE7307	Human body index - transcriptional profiling
+GSE7390	Strong Time Dependence of the 76-Gene Prognostic Signature
+GSE7390	Strong Time Dependence of the 76-Gene Prognostic Signature
+GSE7497	Influence of TGFbeta on human resting CD4+ T cells
+GSE7638	Expression data from monocytes of individuals with different collateral flow index CFI
+GSE7803	Human pre-invasive and invasive cervical squamous cell carcinomas and normal cervical epithelia
+GSE7848	Effect of actein on the growth of the MDA-MB-453 breast cancer cell lines as a function of time and concentration.
+GSE7894	Differential gene expression in peripheral blood CD2+ leukocytes from PATH particpants
+GSE7895	Reversible and Permanent effects of Tobacco Smoke Exposure on Airway Epithelial Gene Expression
+GSE7929	Gene Signature for Aggression of Melanoma Metastases - Melanoma Metastasis (LeiATCC)
+GSE7956	Gene Signature for Aggression of Melanoma Metastases - Melanoma Metastasis (LeiFidler)
+GSE8052	Genetic variants regulating ORMDL3 expression are determinants of susceptibility to childhood asthma
+GSE8157	Gene expression profiling in skeletal muscle of PCOS after pioglitazone therapy
+GSE8192	The DExH-box RNA helicase RHAU is a Nuclear Protein Involved in Transcription and mRNA Decay
+GSE8218	Gene expression data from prostate cancer samples
+GSE8218	Gene expression data from prostate cancer samples
+GSE8332	Death receptor O-glycosylation controls tumor-cell sensitivity to the proapoptotic ligand Apo2L/TRAIL
+GSE8397	Expression profiling of the Parkinsonian Brain
+GSE8440	Expression data fromCongenital disorders of Glycosylation type-1 patients (CDG-I)
+GSE8481	Various human cell types
+GSE8581	Human Chronic Obstructive Pulmonary Disorder (COPD) Biomarker
+GSE8650	Blood Leukocyte Microarrays to Diagnose Systemic Onset Juvenile Idiopathic Arthritis and Follow IL-1 blocade
+GSE8658	PPARg regulated gene expression in human dendritic cells
+GSE8658	PPARg regulated gene expression in human dendritic cells
+GSE8658	PPARg regulated gene expression in human dendritic cells
+GSE8835	Chronic lymphocytic leukemia cells induce changes in gene expression of CD4 and CD8 T cells.
+GSE8921	Toll-like receptor triggering of a vitamin D-mediated human antimicrobial response
+GSE9006	Gene expression in PBMCs from children with diabetes
+GSE9103	Skeletal Muscle Transcript Profiles in Trained or Sedentary Young and Old Subjects
+GSE9166	Trovafloxacin-Induced Gene Expression Changes: Comparison of Primary Human Hepatocytes to HepG2 Cells
+GSE9169	Gene expression during neuronal differentiation in two subtypes of SH-SY5Y
+GSE9195	Predicting prognosis using molecular profiling in estrogen receptor-positive breast cancer treated with tamoxifen
+GSE9195	Predicting prognosis using molecular profiling in estrogen receptor-positive breast cancer treated with tamoxifen
+GSE9419	The skeletal muscle transcript profile reflects responses to inadequate protein intake in younger and older males
+GSE9476	Abnormal Expression Changes in AML
+GSE9676	Effects of sex and age on skeletal muscle gene expression in normal men and women
+GSE9844	Transcriptomic Dissection of Tongue Squamous Cell Carcinoma
+GSE9874	Expression profiles of human macrophages
+GSE9891	Expression profile of 285 ovarian tumour samples
+GSE9936	Expression data from human breast cancer cells (MCF-7) coexpressing ERalpha and Erbeta, treated with phytoestrogens
+GSE9971	CYP3A5 Gene Expression is Associated with Early Recurrence of Non-small Cell Lung Cancer
+GSE10063	Effects of tobacco smoke on gene expression and cellular pathways in a cellular model of oral leukoplakia
+GSE10172	Molecular profiling of pediatric mature B-cell lymphoma treated in population-based prospective clinical trials
+GSE10172	Molecular profiling of pediatric mature B-cell lymphoma treated in population-based prospective clinical trials
+GSE10282	In-transit extremity melanoma I
+GSE10325	Expression data from human peripheral blood subsets
+GSE10325	Expression data from human peripheral blood subsets
+GSE10327	mRNA expression data of 62 human medulloblastoma tumors
+GSE10327	mRNA expression data of 62 human medulloblastoma tumors
+GSE10358	Discovery and validation of expression data for the Genomics of Acute Myeloid Leukemia Program at Washington University
+GSE10410	Triazole Antifungal Toxicogenomics: human_primary_hepatocytes_CellzDirect
+GSE10445	MERLION LUNG CANCER STUDY
+GSE10445	MERLION LUNG CANCER STUDY
+GSE10474	Microarray Analysis of Acute Lung Injury
+GSE10592	Differential gene expression from azithromycin and SMM treated human airway epithelium
+GSE10792	Genome wide genotyping and gene expression data of childhood B-cell precursor ALL without known genetic aberrations
+GSE10843	mRNA Cancer Cell Line Profiles
+GSE10846	Prediction of survival in diffuse large B cell lymphoma treated with chemotherapy plus Rituximab
+GSE10846	Prediction of survival in diffuse large B cell lymphoma treated with chemotherapy plus Rituximab
+GSE10911	Expression data from MCF-7aro aromatase inhibitor-resistant, tamoxifen-resistant and LTEDaro lines.
+GSE10911	Expression data from MCF-7aro aromatase inhibitor-resistant, tamoxifen-resistant and LTEDaro lines.
+GSE11083	Childhood Onset Rheumatic Disease Gene Expression Profile
+GSE11166	Local regulation and clinical impact of complement gene expression in deceased and living donor kidney allografts
+GSE11190	Interferon signaling and treatment outcome in chronic hepatitis C
+GSE11318	Molecular subtypes of DLBCL have distinct chromosomal aberrations
+GSE11342	Gene expression of Peg-interferon alfa-2b plus ribavirin in hepatitis C patients during the first 10 weeks of treatment
+GSE11482	Rhabdoid Tumor: Gene Expression Clues to Pathogenesis and Potential Therapeutic Targets
+GSE11869	The genomic response of a human uterine endometrial adenocarcinoma cell line to 17alpha-ethynyl estradiol.
+GSE11869	The genomic response of a human uterine endometrial adenocarcinoma cell line to 17alpha-ethynyl estradiol.
+GSE11877	Children's Oncology Group Study 9906 for High-Risk Pediatric ALL
+GSE11877	Children's Oncology Group Study 9906 for High-Risk Pediatric ALL
+GSE11903	Effective treatment of psoriasis with etanercept is linked to suppression of IL17 signaling, not immediate response TNF
+GSE11917	Vitamin D sterol effects on coronary ASMC genes
+GSE12079	Molecular profiling of CD3- CD4+ T-cells from patients with the lymphocytic variant of hypereosinophilic syndrome
+GSE12093	The 76-gene Signature Defines High-Risk Patients that Benefit from Adjuvant Tamoxifen Therapy
+GSE12102	Overcoming resistance to conventional drugs in Ewing's sarcoma and identification of molecular predictors of outcome.
+GSE12172	Common activation of RAS_MAPK pathway in serous LMP tumours
+GSE12195	Mutations of multiple genes deregulate the NF-kB pathway in diffuse large B cell lymphoma
+GSE12195	Mutations of multiple genes deregulate the NF-kB pathway in diffuse large B cell lymphoma
+GSE12195	Mutations of multiple genes deregulate the NF-kB pathway in diffuse large B cell lymphoma
+GSE12195	Mutations of multiple genes deregulate the NF-kB pathway in diffuse large B cell lymphoma
+GSE12195	Mutations of multiple genes deregulate the NF-kB pathway in diffuse large B cell lymphoma
+GSE12237	Genes that mediate breast cancer metastasis to the brain
+GSE12288	Gene expression patterns in peripheral blood correlate with the extent of coronary artery disease
+GSE12355	Detection of Notch1-IC, Notch2-IC and EBNA2 target genes in human B cells
+GSE12408	Defective Cohesin in CdLS Mediates Gene Expression with Characteristics of Transcription Factor and Insulator Activity
+GSE12408	Defective Cohesin in CdLS Mediates Gene Expression with Characteristics of Transcription Factor and Insulator Activity
+GSE12417	Prognostic gene signature for normal karyotype AML
+GSE12460	Expression profiling of neuroblastic tumors
+GSE12627	Non-supervised hierarchical clustering of gene expression data
+GSE12662	Normal human bone marrow CD34+ cells, promyelocytes, and neutrophils and PR9 cell line PML-RARA induction time course
+GSE12667	Discovery of somatic mutations in lung adenocarcinomas
+GSE12777	Gene expression profiling of 51 human breast cancer cell lines
+GSE12777	Gene expression profiling of 51 human breast cancer cell lines
+GSE12868	ChIP-on-chip significance analysis reveals large-scale binding and regulation by human transcription factor oncogenes
+GSE12939	Global gene expression changes including drug metabolism and disposition induced by three-dimensional culture of HepG2
+GSE12992	Beta-catenin status in pediatric medulloblastomas
+GSE12995	Expression data for diagnosis acute lymphoblastic leukemia samples
+GSE13009	MCF7 EGF, HRG stimulation
+GSE13009	MCF7 EGF, HRG stimulation
+GSE13041	Gene expression analysis of glioblastomas identifies the major molecular basis for the prognostic benefit of younger age
+GSE13294	Expression data from primary colorectal cancers
+GSE13314	Gene expression profiling of pulmonary MALT lymphoma
+GSE13351	Expression data from ALL samples for patients included in the Dutch Childhood Oncology Group
+GSE13351	Expression data from ALL samples for patients included in the Dutch Childhood Oncology Group
+GSE13351	Expression data from ALL samples for patients included in the Dutch Childhood Oncology Group
+GSE13355	Gene expression data of skin from psoriatic patients and normal controls
+GSE13355	Gene expression data of skin from psoriatic patients and normal controls
+GSE13367	Genome-wide gene expression analysis of mucosal colonic biopsies and isolated colonocytes...
+GSE13425	Expression data from ALL patients included in the set used to construct a classification signature (COALL cohort)
+GSE13506	Galanin preproprotein is associated with elevated plasma triglycerides
+GSE13548	Expression data from human cancer cells treated with UPR modulators under ER stress conditions
+GSE13591	Integrated genomics approach to detect allelic imbalances in multiple myeloma
+GSE13760	Gene expression profiling in arterial tissue from type 2 diabetic patients
+GSE13760	Gene expression profiling in arterial tissue from type 2 diabetic patients
+GSE13811	Analysis of gene expression response of CLL cells to co-culture with Nurse like cells
+GSE13911	Expression data from primary gastric tumors (MSI and MSS) and adjacent normal samples
+GSE13933	Trachea Epithelium as a "Canary" for Cigarette Smoking-induced Biologic Phenotype of Small Airway Epithelium
+GSE13996	Molecular profiling of classical Hodgkin's lymphoma tissues
+GSE14018	Metastases of breast cancer (U133A)
+GSE14018	Metastases of breast cancer (U133A)
+GSE14034	Alterations in Gene Expression in Human Mesothelial Cells Correlate with Mineral Pathogenicity
+GSE14062	MLL rearrangements in pediatric ALL and AML: MLL specific and lineage specific signatures
+GSE14209	Dysregulated genes associated with acquired resistance
+GSE14315	Effects of demethylation on lung cancer cell lines
+GSE14323	RMA expression data for liver samples from subjects with HCV, HCV-HCC, or normal liver
+GSE14333	Expression data from 290 primary colorectal cancers
+GSE14383	Effects of chronic exposure of human bronchial epithelial cells to low doses of cigarette smoke condensate
+GSE14615	Microarray analyses of induction failure in T-ALL (COG study 9404)
+GSE14615	Microarray analyses of induction failure in T-ALL (COG study 9404)
+GSE14671	EXPRESSION SIGNATURE TO PREDICT MAJOR CYTOGENETIC RESPONSE IN CHRONIC PHASE CML PATIENTS TREATED WITH IMATINIB
+GSE14671	EXPRESSION SIGNATURE TO PREDICT MAJOR CYTOGENETIC RESPONSE IN CHRONIC PHASE CML PATIENTS TREATED WITH IMATINIB
+GSE14805	Transcript expression data from glioblastoma subcutaneous xenografts and non-neoplastic control brain
+GSE14828	FGF-2 ENHANCES PROLIFERATION AND DELAYS LOSS OF CHONDROGENIC POTENTIAL IN HUMAN ADULT BONE MARROW-DERIVED MSCs
+GSE14858	Gene exprssion profile classification predicts clinical outcome in juvenile myelomonocytic leukemia
+GSE14880	Differentation in neuroblastomas
+GSE14905	Type I Interferon: Potential Therapeutic Target for Psoriasis?
+GSE14924	Characterisation of gene expression changes in T cells from patients presenting with AML compared with healthy T cells
+GSE14926	Analysis of the impact of the method of cell selection on the gene expression profile of human CD4 and CD8 T cells
+GSE14934	Gene expression profiles of Ras mutants.
+GSE14994	Patterns of gene expression and copy-number alterations in VHL disease-associated and sporadic ccRCC
+GSE15258	Whole blood transcript profiling of rheumatoid arthritis patients
+GSE15434	Gene expression profiling in AML with normal karyotype: A multicenter study investigating molecular markers in 251 cases
+GSE15471	Whole-Tissue Gene Expression Study of Pancreatic Ductal Adenocarcinoma
+GSE15490	Sequential gene expression profiling in CLL during treatment
+GSE15641	Gene signatures of progression and metastasis in renal cell cancer
+GSE15695	Comprehensive Homozygous Deletion Mapping of Myeloma Defines a Poor Prognosis Cell Death Gene Expression Signature
+GSE15695	Comprehensive Homozygous Deletion Mapping of Myeloma Defines a Poor Prognosis Cell Death Gene Expression Signature
+GSE15695	Comprehensive Homozygous Deletion Mapping of Myeloma Defines a Poor Prognosis Cell Death Gene Expression Signature
+GSE15765	Identification of cholangiocarcinoma-like gene expression traits in hepatocellular carcinoma
+GSE15765	Identification of cholangiocarcinoma-like gene expression traits in hepatocellular carcinoma
+GSE15777	Spontaneous regression of chronic lymphocytic leukemia: clinical and biological features of 9 cases
+GSE15913	Thalidomide Exerts Distinct Molecular Antileukemic Effects
+GSE15935	Expression data from 'naive' and HVC-replicon containing Huh7 cells (Clone A cells)
+GSE16015	AML with mutated NPM1 carrying a normal or aberrant karyotype show overlapping features
+GSE16020	Patients affected with autosomal dominant monocytopenia with increased susceptibility to mycobacterial infection
+GSE16059	Gene Expression in Peripheral Blood Leucocytes in Monozygotic Twins Discordant for Chronic Fatigue
+GSE16129	Enhanced Monocyte Response & Decreased Central Memory T Cells in Children with Invasive Staphylococcus aureus Infections
+GSE16131	Differences Between Follicular Lymphoma With and Without Translocation t(14;18)
+GSE16214	Expression data from relapsing-remitting MS samples
+GSE16214	Expression data from relapsing-remitting MS samples
+GSE16214	Expression data from relapsing-remitting MS samples
+GSE16237	Expression data of human neuroblastoma tissue samples
+GSE16391	GGI: a potential predictor of relapse for endocrine-treated breast cancer patients in the BIG 1-98 trial
+GSE16476	Integrated bioinformatic and wet-lab approach to identify potential oncogenic networks in neuroblastoma
+GSE16476	Integrated bioinformatic and wet-lab approach to identify potential oncogenic networks in neuroblastoma
+GSE16476	Integrated bioinformatic and wet-lab approach to identify potential oncogenic networks in neuroblastoma
+GSE16476	Integrated bioinformatic and wet-lab approach to identify potential oncogenic networks in neuroblastoma
+GSE16515	Expression data from Mayo Clinic Pancreatic Tumor and Normal samples
+GSE16581	Genomic landscape of meningiomas: gene expression
+GSE16677	Gene expression profiling of Down Syndrome (DS)-AMKL and non-DS AMKL samples
+GSE17025	Gene Expression Analysis of Stage I Endometrial Cancers
+GSE17032	Expression data from human fibroblasts
+GSE17183	Hepatic gene expression before and during interferon and ribavirin combination therapy
+GSE17195	Germline genomic variations associated with childhood acute lymphoblastic leukemia
+GSE17306	Plasma cells from 52 patients with multiple myeloma: mRNA and miRNA expression profiling
+GSE17356	Expression data from prostate cancer epithelial cells from African American and European American men
+GSE17459	Down's syndrome with acute lymphoblastic pediatric leukemia (DS-ALL)
+GSE17475	Expression data from lung adenocarcinoma
+GSE17536	Metastasis Gene Expression Profile Predicts Recurrence and Death in Colon Cancer Patients (Moffitt Samples)
+GSE17536	Metastasis Gene Expression Profile Predicts Recurrence and Death in Colon Cancer Patients (Moffitt Samples)
+GSE17700	Factorial study for evaluating the effect of Affy platform and lab on gene expression measurements
+GSE17703	Bone marrow gene expression of pediatric acute lymphoblastic leukemia (ALL)
+GSE17800	Myocardial gene expression profiles and cardiodepressant autoantibodies predict response of patients with dilated cardiomyopathy to immunoadsorption therapy
+GSE17855	Expression data from pediatric AML patients
+GSE17855	Expression data from pediatric AML patients
+GSE17920	Expression data of diagnostic biopsy samples from Hodgkin lymphoma patients
+GSE17951	Gene expression analysis of prostate cancer samples using Affymetrix U133Plus2 array
+GSE17951	Gene expression analysis of prostate cancer samples using Affymetrix U133Plus2 array
+GSE17967	RMA expression data for liver samples from subjects with HCV cirrhosis with and without concomitant HCC
+GSE18005	Human colorectal cancer cell lines treated with several inhibitors of PI3Kinase - AKT signaling pathway
+GSE18018	Multilineage dysplasia and AML with mutated nucleophosmin
+GSE18088	Correlation of molecular profiles and clinical outcome of stage UICC II colon cancer patients
+GSE18206	Analysis of human in vivo irritated epidermis: differential profiles induced by sodium lauryl sulphate and nonanoic acid
+GSE18323	Expression data from a malaria vaccine trial (HG-U133A2.0 and U133 Plus 2.0)
+GSE18497	Diagnosis-relapse in ALL
+GSE18670	Pancreatic cancer circulating tumor cells express a cell motility gene signature that predicts survival after surgery
+GSE18674	Gene expression profile of Human tissues and cells
+GSE18723	Gene Expression Circulating B Lymphocytes for Smoking Females
+GSE18791	Antiviral response dictated by choreographed cascade of transcription factors
+GSE18842	Gene expression analysis of human lung cancer and control samples
+GSE18995	Expression data from donor lungs of cardiac death and brain death donors
+GSE19143	Gene expression data from children diagnosed with ALL in vitro sensitive or resistant to prednisolone
+GSE19147	CD3+ T-cells of B-cell chronic lymphocytic leukemia
+GSE19188	Expression data for early stage NSCLC
+GSE19234	Immune profile and mitotic index of metastatic melanoma lesions enhance clinical staging in predicting patient survival.
+GSE19246	A novel method of amplification of FFPET derived-RNA enables accurate disease classification with microarrays
+GSE19301	Gene Expression Patterns in Peripheral Blood Mononuclear Cells Associated with Asthma Exacerbation Attack
+GSE19314	Sarcoidosis-specific markers from whole blood gene expression
+GSE19314	Sarcoidosis-specific markers from whole blood gene expression
+GSE19475	Gene expression data from infants (<1 year of age) diagnosed with Acute Lymphoblastic Leukemia (ALL)
+GSE19475	Gene expression data from infants (<1 year of age) diagnosed with Acute Lymphoblastic Leukemia (ALL)
+GSE19475	Gene expression data from infants (<1 year of age) diagnosed with Acute Lymphoblastic Leukemia (ALL)
+GSE19475	Gene expression data from infants (<1 year of age) diagnosed with Acute Lymphoblastic Leukemia (ALL)
+GSE19577	MLL partner genes confer distinct biological and clinical signatures of pediatric AML, an AIEOP study
+GSE19804	Genome-wide screening of transcriptional modulation in non-smoking female lung cancer in Taiwan
+GSE20181	Letrozole (Femara) early and late responses to treatment
+GSE20181	Letrozole (Femara) early and late responses to treatment
+GSE20196	Gene expression profile of poorly differentiated synovial sarcoma
+GSE20559	Gene expression signature reflects differentiation differences rather than telomere maintenance mechanism
+GSE20711	Epigenetic portraits of human breast cancers (expression data)
+GSE20910	Expression data from Down syndrome and non-Down syndrome pediatric acute lymphoblastic leukemia cases
+GSE21029	The lymph node microenvironment promotes B-cell receptor signaling, NF-κB activation, and tumor proliferation in chronic lymphocytic leukemia (CLL)
+GSE21122	Whole-transcript expression data for soft-tissue sarcoma tumors and control normal fat specimens
+GSE21452	Integrated genomic profiling in mantle cell lymphoma
+GSE21477	Gene Expression Changes in Primary Human Nasal Epithelial Cells exposed to Formaldehyde in vitro
+GSE21589	The Relationship between Virus Replication and Host Gene Expression in Lymphatic Tissue during HIV-1 Infection
+GSE21610	Gene expression analysis in non-failing and failing myocardium pre and post pulsatile and non-pulsatile VAD support
+GSE22056	High VEGFC expression is associated with unique gene expression profiles and predicts adverse prognosis in pediatric and adult acute myeloid leukemia.
+GSE22083	Expression data from human skin exposed to solar-simulated radiation with or without sunscreen
+GSE22224	Comparative Transcriptional and Phenotypic Peripheral Blood Analysis of Kidney Recipients under Cyclosporin A or Sirolimus Monotherapy
+GSE22356	Altered immune phenotype in peripheral blood cells of patients with scleroderma-associated pulmonary hypertension
+GSE22470	Translocations Activating IRF4 Identify a Subtype of Germinal-Center-Derived B-cell Lymphoma Affecting Predominantly Children and Young Adults
+GSE22470	Translocations Activating IRF4 Identify a Subtype of Germinal-Center-Derived B-cell Lymphoma Affecting Predominantly Children and Young Adults
+GSE22470	Translocations Activating IRF4 Identify a Subtype of Germinal-Center-Derived B-cell Lymphoma Affecting Predominantly Children and Young Adults
+GSE22541	Expression data from pulmonary metastases and primary tumors of clear-cell renal cell carcinoma (ccRCC) with different disease-free survivals
+GSE22573	Organotpyic Human Epithelial Neoplasia
+GSE22707	Absence of significant overlap in transcriptional patterns between operationallytolerant liver and kidney recipients
+GSE22762	An eight-gene expression signature for the prediction of survival and time to treatment in chronic lymphocytic leukemia
+GSE22762	An eight-gene expression signature for the prediction of survival and time to treatment in chronic lymphocytic leukemia
+GSE22762	An eight-gene expression signature for the prediction of survival and time to treatment in chronic lymphocytic leukemia
+GSE22886	Expression profiles from a variety of resting and activated human immune cells
+GSE23038	Normal prostate cells were immortalized and cultured for 650 days till several transformation hallmarks were observed
+GSE23038	Normal prostate cells were immortalized and cultured for 650 days till several transformation hallmarks were observed
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23120	Basal gene expression data from Human Variation Panel
+GSE23293	Definition and characterization of the systemic T cell dysregulation in untreated indolent B cell lymphoma and very early CLL
+GSE23553	Gene expression changes with induction of in-vitro platinum-resistance in ovarian cancer cell lines.
+GSE23806	Expression data of glioblastoma stem-like (GS) cell lines, conventional glioma cell lines and primary tumors
+GSE23806	Expression data of glioblastoma stem-like (GS) cell lines, conventional glioma cell lines and primary tumors
+GSE23806	Expression data of glioblastoma stem-like (GS) cell lines, conventional glioma cell lines and primary tumors
+GSE23988	Expression data from breast cancer FNA biopsies from patients (US samples)
+GSE24187	Atorvastatin, rosuvastatin and rifampicin effect on human primary hepatocyte transcriptome [Affymetrix platform]
+GSE24427	Expression data of multiple sclerosis patients receiving subcutaneous Interferon-beta-1b therapy [U133 A and B]
+GSE24427	Expression data of multiple sclerosis patients receiving subcutaneous Interferon-beta-1b therapy [U133 A and B]
+GSE24514	Expression data from human MSI colorectal cancer and normal colonic mucosa
+GSE24742	Effects of Rituximab on global gene expression profiles in the RA synovium
+GSE24870	Gene expression profiling of CD34+ subsets in Multiple Myeloma and healthy individuals
+GSE25429	Gene expression profiles of primary cultured ovarian cells and ovarian cancer cell lines in the presence and absence of a DNA methyltransferase inhibitor
+GSE25550	t(11;18)-positive vs. t(11;18)-negative MALT lymphoma
+GSE25550	t(11;18)-positive vs. t(11;18)-negative MALT lymphoma
+GSE25571	Expression analysis of genes located in the minimally deleted regions of 13q14 and 11q22-23 in chronic lymphocytic leukemia - unexpected expression pattern of the RHO GTPase activator ARHGAP20
+GSE25613	A Novel Pro-Survival Function of Cyclin-D1 Underlies Its Oncogenic Role and Potential as a Therapeutic Target in Human and Murine Mantle Cell Lymphoma
+GSE25941	Effects of age on the skeletal muscle transcriptome
+GSE26281	Integrated Genetic and Epigenetic Analysis of Childhood Acute Lymphoblastic Leukemia Reveals a Synergistic Role for Structural and Epigenetic Lesions In Determining Disease Phenotype
+GSE26344	In vitro models of glioblastoma (GBM)
+GSE26366	Notch/HES1-mediated PARP1 activation: A cell-type specific mechanism for tumor suppression
+GSE26511	Involvement of the TGF-β and β-catenin pathways in pelvic lymph node metastasis in early stage cervical cancer
+GSE26549	Gene Expression Profiling Predicts the Development of Oral Cancer
+GSE26622	MOLECULAR CHARACTERIZATION OF LIVER ALLOGRAFTS FROM OPERATIONALLY TOLERANT TRANSPLANT RECIPIENTS (Affymetrix)
+GSE26682	MRE11 Deficiency Increases Sensitivity to Poly(ADP-ribose) Polymerase Inhibition in Microsatellite Unstable Colorectal Cancers.
+GSE26682	MRE11 Deficiency Increases Sensitivity to Poly(ADP-ribose) Polymerase Inhibition in Microsatellite Unstable Colorectal Cancers.
+GSE26682	MRE11 Deficiency Increases Sensitivity to Poly(ADP-ribose) Polymerase Inhibition in Microsatellite Unstable Colorectal Cancers.
+GSE26713	Integrated transcript and genome analyses reveal NKX2-1 and MEF2C as potential oncogenes in T-ALL
+GSE26869	Regulation of myogenic progenitor proliferation in human fetal skeletal muscle by BMP4 and its antagonist Gremlin.
+GSE26886	Gene expression profiling of Barrett's esophagus, adenocarcinoma, esophageal squamous epithelium and squamous cell carcinoma
+GSE26971	Affymetrix data for training of Endopredict algorithm
+GSE27041	OXPHOS complex I deficiency leads to transcriptional changes of the Nrf2-Keap1 pathway and selenoproteins.
+GSE27155	Human thyroid adenomas, carcinomas, and normals
+GSE27155	Human thyroid adenomas, carcinomas, and normals
+GSE27263	Assessment of genotoxic effects and changes in gene expression in humans exposed to formaldehyde by inhalation under controlled conditions
+GSE27389	Substitutions in the KRas oncogene determine protein behavior: Implications for signaling and clinical outcome.
+GSE27651	The Anterior Gradient Homolog 3 (AGR3) Gene Is Associated with Differentiation and Survival in Ovarian Cancer
+GSE28044	Expression data from non-malignant fallopian tube epithelium
+GSE28392	Effects of resistance exercise on the transcriptome in MHC I and MHC IIa muscle fibers of young and old women
+GSE28497	New markers for minimal residual disease detection in acute lymphoblastic leukemia
+GSE28571	Gene Copy Number Aberrations are Associated with Survival in Histological Subgroups of Non-Small Cell Lung Cancer (expression data)
+GSE28691	Characterization of an Oxaliplatin Sensitivity Predictor in a preclinical Murine Model of Colorectal Cancer
+GSE28702	CRC samples for FOLFOX therapy prediction
+GSE28796	Gene expression profiles of pretreatment biopsies from dose-dense-docetaxel-treated breast cancers
+GSE28821	Laser-capture microdissected invasive micropapillary carcinomas of the breast
+GSE28995	THP-1 cell study: RA and TNF Treatments; RA time course
+GSE29001	Identification of Unique Therapeutic Targets in Esophageal Squamous Cell Carcinoma
+GSE29023	Predict cytogenetic abnormalities with gene expression profiles
+GSE29175	Expression data from ovarian cancer cell lines
+GSE29354	Mesothelioma tumor gene expression profiles
+GSE29570	The mtDNA Amerindian Haplogroup B2 enhances the risk for Cervical Cancer of HPV: de-regulation of mitochondrial genes may be involved.
+GSE29683	Coexpression of Normally Incompatible Developmental Pathways in Retinoblastoma Genesis [human tumor/cell line data]
+GSE29718	An early inflammatory gene profile in visceral adipose tissue in children
+GSE29721	The landscape of promoter DNA hypomethylation in liver cancer (expression data)
+GSE29908	Expression data from peripheral blood mononuclear cell in patients with type 1 diabetes before and after peripheral stem cell transplantation
+GSE29986	gene expression analyses of pediatriclymphoblastic lymphomas and leukemias
+GSE30074	Expression data from 30 medulloblastomas
+GSE30161	Genomic Multivariate Predictors of Response to Adjuvant Chemotherapy in Ovarian Carcinoma: Predicting Platinum Resistance
+GSE30240	Expression data from 5 human cell lines exposed to IR (5 Gy)
+GSE30442	Whole-exome sequencing identifies mutations of BCOR in acute myeloid leukemia with normal karyotype
+GSE30723	Gene Expression Profiles of human primary alveolar type II (ATII) cells and macrophages (AMs) after influenza virus infection
+GSE30784	Gene expression profiling of oral squamous cell carcinoma (OSCC)
+GSE30903	Expression data from untreated and ATP treated AML blasts
+GSE30929	Whole-transcript expression data for liposarcoma
+GSE30979	Gene expression in hypoxic non-small cell lung cancer
+GSE31312	Development and application of a new immunophenotypic algorithm for molecular subtype classification of Diffuse Large B-Cell Lymphoma (DLBCL): Report from an International DLBCL Rituximab-CHOP Consortium Program Study
+GSE31312	Development and application of a new immunophenotypic algorithm for molecular subtype classification of Diffuse Large B-Cell Lymphoma (DLBCL): Report from an International DLBCL Rituximab-CHOP Consortium Program Study
+GSE31312	Development and application of a new immunophenotypic algorithm for molecular subtype classification of Diffuse Large B-Cell Lymphoma (DLBCL): Report from an International DLBCL Rituximab-CHOP Consortium Program Study
+GSE31312	Development and application of a new immunophenotypic algorithm for molecular subtype classification of Diffuse Large B-Cell Lymphoma (DLBCL): Report from an International DLBCL Rituximab-CHOP Consortium Program Study
+GSE31312	Development and application of a new immunophenotypic algorithm for molecular subtype classification of Diffuse Large B-Cell Lymphoma (DLBCL): Report from an International DLBCL Rituximab-CHOP Consortium Program Study
+GSE31312	Development and application of a new immunophenotypic algorithm for molecular subtype classification of Diffuse Large B-Cell Lymphoma (DLBCL): Report from an International DLBCL Rituximab-CHOP Consortium Program Study
+GSE31348	Tuberculosis Patients Blood Gene Expression Through Treatment
+GSE31403	Clinically Relevant Subsets Identified by Gene Expression Patterns Support a Revised Ontogenic Model of Wilms Tumor: A Children's Oncology Group Study
+GSE31504	Impact of Gene Expression Profiling Based Risk Stratification in Patients with Myeloma Receiving Initial Therapy with Lenalidomide and Dexamethasone
+GSE31534	Gene expression profile in A375 melanoma cells after 45 functionally important molecules were knocked down using siRNA
+GSE31620	MicroRNA-1 is a candidate tumor suppressor and prognostic marker
+GSE31684	Combination of a novel gene expression signature with a clinical nomogram improves the prediction of survival in high-risk bladder cancer
+GSE31684	Combination of a novel gene expression signature with a clinical nomogram improves the prediction of survival in high-risk bladder cancer
+GSE31773	Comparison of mRNA expression in circulating T-cells from patients with severe asthma
+GSE31912	Gene expression profile in MCF7 breast cancer cells after 78 functionallly important molecules were knocked down using siRNA.
+GSE32448	CPDR tumor-benign 80 genechip dataset
+GSE32474	Comparison between cell lines from 9 different cancer tissue (NCI-60) (Affymetrix U133 Plus 2.0)
+GSE32474	Comparison between cell lines from 9 different cancer tissue (NCI-60) (Affymetrix U133 Plus 2.0)
+GSE32607	Human lymphocyte activation during the G0 to G1 transition
+GSE32646	GSTP1 expression predicts poor pathological complete response to neoadjuvant chemotherapy in ER-negative breast cancer
+GSE32901	Expression data for effector T cells
+GSE32962	In vitro prednisolone resistance signature in MLL-rearranged infant ALL
+GSE33109	Gene expression changes in human neural cells exposed to VX (O-ethyl S-[2-(diisopropylamino)ethyl] methylphosphonothiolate)
+GSE33113	AMC colon cancer AJCCII
+GSE33113	AMC colon cancer AJCCII
+GSE33458	Gene expression analysis of osteosarcoma tumor-initiating cells (High) vs bulk tumor cells (Low)
+GSE34171	Integrative Analysis of a series of newly diagnosed Diffuse Large B-cell Lymphomas (DLBCLs)
+GSE34171	Integrative Analysis of a series of newly diagnosed Diffuse Large B-cell Lymphomas (DLBCLs)
+GSE34205	Transcriptional profile of PBMCs in patients with acute RSV or Influenza infection
+GSE34211	Pfizer Molecular Profile Data for Cell Lines
+GSE34211	Pfizer Molecular Profile Data for Cell Lines
+GSE34607	Airborne particulate matter affects gene expression in BEAS-2B bronchial epithelial cells.
+GSE34620	Expression profiling of Ewing sarcoma samples
+GSE34670	Gene expression in pediatric cALL
+GSE34733	Methylation of the Proximal, Distal and Core Promoter of CEBPA in 572 Cases with Normal Karyotpye AML and 44 with t(8;21) Disclosed Different Frequencies but no Impact on Prognosis
+GSE34860	Gene expression profiling in acute myeloid leukemia with mutated NPM
+GSE35287	Unique Transcriptome, Pathways, and Networks in the Human Endometrial Fibroblast Response to Progesterone in Endometriosis
+GSE35493	Pediatric rhabdoid tumors of kidney and brain show many differences in gene expression but share dysregulation of cell cycle and epigenetic effector genes
+GSE35896	Gene expression data from 62 colorectal cancers
+GSE36245	Gene expression data from glioblastoma tumor samples
+GSE36701	Gene expression analysis of rectal mucosa in chronic irritable bowel syndrome (IBS) compared to healthy volunteers (HV)
+GSE36771	Expression data from primary breast tumors (Auckland)
+GSE36772	Expression data from primary breast tumors (NUH)
+GSE36773	Expression data from primary breast tumors (IJB+OXF)
+GSE36824	Clonal competition with alternating dominance in multiple myeloma [GEP]
+GSE36824	Clonal competition with alternating dominance in multiple myeloma [GEP]
+GSE36895	Molecular Genetic Classification of clear-cell Renal Cell Carcinoma (ccRCC) based on the Gene Expression Profiling of Tumors and Tumorgrafts deficient for BAP1 or PBRM1
+GSE37088	Follicular Lymphoma expression array
+GSE37200	Gene expression profiling of Barrett's esophageal tissues and esophageal adenocarcinoma specimens
+GSE37201	Gene expression profiling of esophageal adenocarcinoma
+GSE37307	Aberrant expressed genes in AML
+GSE37364	Expression data from human colonic biopsy samples(adenoma-carcinoma)
+GSE37371	Expression data from Ewing's sarcoma tumor samples
+GSE37418	Novel mutations target distinct subgroups of medulloblastoma.
+GSE37567	Methodoligies for identifying lead toxicity
+GSE38351	The multifaceted balance of TNF-a and type I / II interferon responses in SLE and RA: how monocytes manage the impact of cytokines
+GSE38351	The multifaceted balance of TNF-a and type I / II interferon responses in SLE and RA: how monocytes manage the impact of cytokines
+GSE38627	Thalidomide in Total Therapy 2 Overcomes Inferior Prognosis of Myeloma with Low Expression of the Glucocorticoid Receptor Gene NR3C1
+GSE38885	Expression data from post-transplant lymphoproliferative disorder (PTLD) patient samples
+GSE39088	Down-regulation of Interferon signature in systemic lupus erythematosus patients by active immunization with Interferon alpha-Kinoid
+GSE39204	Gene-expression profiles of ascites-cytology-positive ovarian cancer
+GSE39411	Expression data from healthy and malignant (chronic lymphocytic leukemia, CLL) human B-lymphocytes after B-cell receptor stimulation
+GSE39454	Genomic signatures characterize leukocyte infiltration in myositis muscles
+GSE39612	Distinct gene expression profiles of viral- and non-viral associated Merkel cell carcinoma revealed by transcriptome analysis
+GSE39671	Expression data from untreated CLL patients
+GSE39976	Determination of molecular markers for BRCA1 and BRCA2 heterozygosity using gene expression profiling
+GSE40182	Culturing Cytotrophoblasts Reverses Gene Dysregulation in Preeclampsia Revealing Possible Causes
+GSE40231	The Stockholm Atherosclerosis Gene Expression (STAGE) study: Global Gene Expression data from coronary and carotid artery disease patients
+GSE40263	Novel antioxidative peptides with potential to reduce psoriatic changes in PBMCs
+GSE41445	Basal gene expression data of 21 cell lines (18 cancer and 3 non-tumorigenic)
+GSE42203	Global expression analysis of DLBCL and SMZL cell lines
+GSE42743	Oral Cavity Cancer Compared to Adjacent Normal Tissue [Validation Set]
+GSE42816	Gene expression propionic patients, carriers, and controls
+GSE42822	Expression data from breast cancer FNA biopsies from patients ( (USO samples)
+GSE43290	Expression data from meningiomas and normal meninges
+GSE43553	Microarray-based gene expression profiling in patients with cryopyrin-associated periodic syndromes defines a disease-related signature and IL-1-responsive transcripts.
