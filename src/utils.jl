@@ -1,13 +1,9 @@
-import CSV
-import DataFrames
-
-using LinearAlgebra
-using SparseArrays
+using CSV, DataFrames, LinearAlgebra, SparseArrays
 
 """Extract the gene co-expression matrix from `file`."""
 function load(file::String)::Tuple{SparseMatrixCSC, Vector{Int}}
 	# Read file
-	df = DataFrames.DataFrame(CSV.File(file, header=["i"; "j"; "value"], delim='\t'))
+	df = DataFrame(CSV.File(file, header=["i"; "j"; "v"], delim='\t'))
 
 	# Set of represented genes
 	genes = unique([df.i; df.j])
@@ -20,7 +16,7 @@ function load(file::String)::Tuple{SparseMatrixCSC, Vector{Int}}
 	df.j = map(x -> mapping[x], df.j)
 
 	# Co-expression matrix
-	S = sparse(df.i, df.j, df.value, n, n)
+	S = sparse(df.i, df.j, df.v, n, n)
 	S += S'
 	S += sparse(Inf * I, n, n)
 
