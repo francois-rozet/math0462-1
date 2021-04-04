@@ -24,7 +24,7 @@ function load(file::String)::Tuple{SparseMatrixCSC, Vector{Int}}
 end
 
 """Compute the adjacency matrix by hard-thresholding `S`."""
-function adjacency(S::SparseMatrixCSC, tau::Float64 = 0.)::SparseMatrixCSC
+function adjacency(S::SparseMatrixCSC; tau::Float64 = 0.)::SparseMatrixCSC
 	return convert.(Int, S .> tau)
 end
 
@@ -38,29 +38,25 @@ end
 A block sub-matrix corresponds to a connected sub-graph.
 """
 function blocks(A::SparseMatrixCSC)::Vector{Vector{Int}}
-	n = size(A, 1)
-	used = spzeros(Int, n)
-	i = 1
-
+	V = Set(A.rowval)
 	list = Vector{Int}[]
 
-	while !isnothing(i)
-		x = sparsevec([i], [1], n)
+	while !isempty(V)
+		i = first(V)
+
+		x = sparsevec([i], 1, size(A, 1))
 
 		while true
 			y = A * x
-			y.nzval .= 1
 
-			if all(y .== x)
+			if nnz(y) == nnz(x)
 				break
-			else
-				x = y
 			end
+
+			x = y
 		end
 
-		used += x
-		i = findnext(iszero, used, i)
-
+		setdiff!(V, x.nzind)
 		append!(list, [x.nzind])
 	end
 
@@ -73,16 +69,16 @@ The pivot is the largest number `p` such that `p`
 is smaller than the connectivity of `p` vertices.
 """
 function pivot(A::SparseMatrixCSC)::Int
-	k = connectivity(A)
-	k = sort(k.nzval, rev=true)
+	K = connectivity(A)
+	K = sort(K.nzval, rev=true)
 
 	# Dichotomic search
-	low, up = 1, floor(Int, sqrt(sum(k)))
+	low, up = 1, floor(Int, sqrt(nnz(A)))
 
 	while low < up
 		p = (low + up + 1) ÷ 2
 
-		if p > k[p]
+		if p > K[p]
 			up = p - 1
 		else
 			low = p
@@ -92,19 +88,144 @@ function pivot(A::SparseMatrixCSC)::Int
 	return low
 end
 
-"""Apply the Worst-Out heuristic to `A`."""
-function worstout(A::SparseMatrixCSC)::SparseVector
-	x = diag(A)
-	k = connectivity(A)
+"""Return the element of `itr` whose value in `f` is optimal."""
+function findopt(f::Function, itr; comp::Function = (a, b) -> a < b)
+	x = first(itr)
+	fx = f(x)
 
-	while sum(k) < nnz(x)^2
-		i = k.nzind[argmin(k.nzval)]
-
-		x[i] = 0
-		dropzeros!(x)
-
-		k = (k .- A[:, i]) .* x
+	for y in itr
+		fy = f(y)
+		if comp(fy, fx)
+			x, fx = y, fy
+		end
 	end
 
-	return x
+	return x, fx
+end
+
+"""Best-In heuristic"""
+function bestin(
+	A::SparseMatrixCSC,
+	x::Union{SparseVector, Nothing} = nothing;
+	tolerance::Function = n -> 0
+)::SparseVector
+	V = Set(A.rowval)
+	C = Vector(connectivity(A))
+
+	if isnothing(x)
+		x = spzeros(Int, size(A, 1))
+	else
+		setdiff!(V, x.nzind)
+	end
+
+	M = Set(x.nzind)
+
+	K = A * x
+	vertices = nnz(x)
+	edges = x' * K
+
+	K = Vector(K)
+
+	while !isempty(V)
+		i, (k, _) = findopt(i -> (K[i], C[i]), V; comp=(a, b) -> a > b)
+
+		n = vertices + 1
+		m = edges + 2 * k + 1
+
+		if n^2 - m <= 2 * tolerance(n)
+			push!(M, i)
+			K .+= A[:, i]
+			vertices = n
+			edges = m
+		else
+			break
+		end
+
+		delete!(V, i)
+	end
+
+	return sparsevec(collect(M), 1, size(A, 1))
+end
+
+"""Worst-Out heuristic"""
+function worstout(
+	A::SparseMatrixCSC,
+	x::Union{SparseVector, Nothing} = nothing;
+	tolerance::Function = n -> 0
+)::SparseVector
+	if isnothing(x)
+		M = Set(A.rowval)
+	else
+		M = Set(x.nzind)
+	end
+
+	K = Vector(connectivity(A))
+	vertices = length(M)
+	edges = nnz(A)
+
+	while vertices^2 - edges > 2 * tolerance(vertices)
+		i, k = findopt(i -> K[i], M)
+
+		delete!(M, i)
+		K .-= A[:, i]
+		vertices -= 1
+		edges -= 2 * k - 1
+	end
+
+	return sparsevec(collect(M), 1, size(A, 1))
+end
+
+"""Simulated-Annealing meta-heuristic"""
+function annealing(
+	A::SparseMatrixCSC,
+	x::Union{SparseVector, Nothing} = nothing;
+	tolerance::Function = n -> 0,
+	alpha::Float64 = 0.5,
+	steps::Int = 1000000
+)::SparseVector
+	V = diag(A).nzind
+
+	if isnothing(x)
+		x = spzeros(Int, size(A, 1))
+	end
+
+	K = A * x
+	vertices = nnz(x)
+	edges = x' * K
+
+	best = copy(x)
+
+	for _ in 1:steps
+		i = rand(V)
+
+		remove = Bool(x[i])
+		if remove
+			n = vertices - 1
+			m = edges - 2 * K[i] + 1
+		else
+			n = vertices + 1
+			m = edges + 2 * K[i] + 1
+		end
+
+		if n^2 - m <= 2 * tolerance(n)
+			if (remove ? rand() < alpha : true)
+				x[i] = 1 - x[i]
+
+				if remove
+					K -= A[:, i]
+				else
+					K += A[:, i]
+				end
+
+				vertices = n
+				edges = m
+
+				if vertices > nnz(best)
+					best = dropzeros(x)
+				end
+			end
+		end
+	end
+
+	return best
 end
