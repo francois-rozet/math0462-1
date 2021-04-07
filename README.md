@@ -18,7 +18,7 @@ the compiled binaries and reload them later. To do so, create the system image w
 ```bash
 julia --project=.
 julia> using PackageCompiler
-julia> PackageCompiler.create_sysimage([:CSV, :DataFrames]; sysimage_path="image.so", precompile_execution_file="src/precompile.jl")
+julia> PackageCompiler.create_sysimage([:ArgParse, :CSV, :DataFrames]; sysimage_path="image.so", precompile_execution_file="src/precompile.jl")
 ```
 
 and load it with the `-J` (or `--sysimage`) flag.

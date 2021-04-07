@@ -107,15 +107,54 @@ end
 function bestin(
 	A::SparseMatrixCSC,
 	x::Union{SparseVector, Nothing} = nothing;
-	tolerance::Function = n -> 0
+	f::Function = n -> 0,
+	maxiter::Int = -1
 )::SparseVector
-	V = Set(A.rowval)
-	C = Vector(connectivity(A))
-
 	if isnothing(x)
 		x = spzeros(Int, size(A, 1))
-	else
-		setdiff!(V, x.nzind)
+	end
+
+	M = Set(x.nzind)
+	V = Set(diag(A).nzind)
+	setdiff!(V, M)
+
+	K = A * x
+	vertices = nnz(x)
+	edges = x' * K
+
+	K = Vector(K)
+	C = Vector(connectivity(A))
+
+	while !isempty(V) && maxiter != 0
+		i, (k, _) = findopt(i -> (K[i], C[i]), V; comp=(a, b) -> a > b)
+
+		n = vertices + 1
+		m = edges + 2 * k + 1
+
+		if n^2 - m <= 2 * f(n)
+			push!(M, i)
+			K .+= A[:, i]
+			vertices = n
+			edges = m
+		else
+			break
+		end
+
+		delete!(V, i)
+		maxiter -= 1
+	end
+
+	return sparsevec(collect(M), 1, size(A, 1))
+end
+
+"""Worst-Out heuristic"""
+function worstout(
+	A::SparseMatrixCSC,
+	x::Union{SparseVector, Nothing} = nothing;
+	f::Function = n -> 0
+)::SparseVector
+	if isnothing(x)
+		x = diag(A)
 	end
 
 	M = Set(x.nzind)
@@ -126,44 +165,7 @@ function bestin(
 
 	K = Vector(K)
 
-	while !isempty(V)
-		i, (k, _) = findopt(i -> (K[i], C[i]), V; comp=(a, b) -> a > b)
-
-		n = vertices + 1
-		m = edges + 2 * k + 1
-
-		if n^2 - m <= 2 * tolerance(n)
-			push!(M, i)
-			K .+= A[:, i]
-			vertices = n
-			edges = m
-		else
-			break
-		end
-
-		delete!(V, i)
-	end
-
-	return sparsevec(collect(M), 1, size(A, 1))
-end
-
-"""Worst-Out heuristic"""
-function worstout(
-	A::SparseMatrixCSC,
-	x::Union{SparseVector, Nothing} = nothing;
-	tolerance::Function = n -> 0
-)::SparseVector
-	if isnothing(x)
-		M = Set(A.rowval)
-	else
-		M = Set(x.nzind)
-	end
-
-	K = Vector(connectivity(A))
-	vertices = length(M)
-	edges = nnz(A)
-
-	while vertices^2 - edges > 2 * tolerance(vertices)
+	while vertices^2 - edges > 2 * f(vertices)
 		i, k = findopt(i -> K[i], M)
 
 		delete!(M, i)
@@ -179,7 +181,7 @@ end
 function annealing(
 	A::SparseMatrixCSC,
 	x::Union{SparseVector, Nothing} = nothing;
-	tolerance::Function = n -> 0,
+	f::Function = n -> 0,
 	alpha::Float64 = 0.5,
 	steps::Int = 1000000
 )::SparseVector
@@ -207,7 +209,7 @@ function annealing(
 			m = edges + 2 * K[i] + 1
 		end
 
-		if n^2 - m <= 2 * tolerance(n)
+		if n^2 - m <= 2 * f(n)
 			if (remove ? rand() < alpha : true)
 				x[i] = 1 - x[i]
 
@@ -228,4 +230,21 @@ function annealing(
 	end
 
 	return best
+end
+
+"""Iterative clique enumeration heuristic"""
+function ice(A::SparseMatrixCSC; f::Function = n -> 0, overlap::Function = n -> 0)::Vector{Vector{Int}}
+	x = diag(A)
+
+	list = Vector{Int}[]
+
+	while nnz(x) > 0
+		y = worstout(A, x, f=f)
+		x -= y
+		dropzeros!(x)
+		y = bestin(A, y, f=f, maxiter=overlap(nnz(y)))
+		append!(list, [y.nzind])
+	end
+
+	return list
 end
