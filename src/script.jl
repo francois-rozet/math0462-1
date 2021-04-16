@@ -103,10 +103,9 @@ for i in 1:2
 	println("=======")
 
 	idx = list[i]
-	x = sparsevec(idx, 1, size(A, 1))
-	B = x' .* A .* x
+	B = A[idx, idx]
 
-	println("|V| = $(nnz(diag(B)))")
+	println("|V| = $(size(B, 1))")
 	println("|E| = $(nnz(B))")
 	println("√|E| = $(floor(Int, sqrt(nnz(B))))")
 	println("pivot(G) = $(pivot(B))")
@@ -139,10 +138,12 @@ println("≡≡≡≡≡≡≡≡")
 modules = Vector{Int}[]
 
 @time for idx in list
-	x = sparsevec(idx, 1, size(A, 1))
-	B = x' .* A .* x
+	B = A[idx, idx]
 
-	append!(modules, ice(B, f=tol, overlap=over))
+	temp = ice(B, f=tol, overlap=over)
+	temp = map(x -> idx[x], temp)
+
+	append!(modules, temp)
 end
 
 sort!(modules, by=length, rev=true)
