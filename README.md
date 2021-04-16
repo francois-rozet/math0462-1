@@ -4,21 +4,22 @@ Project realized as part of the course *Discrete Optimization* given by **Quenti
 
 ## Dependencies
 
-The scripts are implemented using [Julia 1.5](https://julialang.org/) and require several dependencies to be executed. A [`Project.toml`](Project.toml) file is provided to install these dependencies.
+The scripts are implemented using [Julia 1.6](https://julialang.org/) and require several dependencies to be executed. A [`Project.toml`](Project.toml) file is provided to install these dependencies.
 
 ```bash
 julia --project=.
 julia> using Pkg
 julia> Pkg.instantiate()
+julia> Pkg.build()
 ```
 
-The functions from these dependencies (*e.g.* `CSV.File`) take a long time to compile. Creating a *system image* allows to save the
-the compiled binaries and reload them later. To do so, create the system image with
+The functions from these dependencies (*e.g.* `CSV.File`) take a long time to compile. Creating a *system image* allows to save the compiled binaries and reload them later. To do so, create the system image with
 
 ```bash
 julia --project=.
 julia> using PackageCompiler
-julia> PackageCompiler.create_sysimage([:ArgParse, :CSV, :DataFrames]; sysimage_path="image.so", precompile_execution_file="src/precompile.jl")
+julia> deps = [:ArgParse, :CSV, :DataFrames, :Gurobi, :JuMP]
+julia> PackageCompiler.create_sysimage(deps; sysimage_path="image.so", precompile_execution_file="src/precompile.jl")
 ```
 
 and load it with the `-J` (or `--sysimage`) flag.

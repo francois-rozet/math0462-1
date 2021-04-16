@@ -1,4 +1,4 @@
-using CSV, DataFrames, LinearAlgebra, SparseArrays
+using CSV, DataFrames, Gurobi, JuMP, LinearAlgebra, SparseArrays
 
 """Extract the gene co-expression matrix from `file`."""
 function load(file::String)::Tuple{SparseMatrixCSC, Vector{Int}}
@@ -86,6 +86,42 @@ function pivot(A::SparseMatrixCSC)::Int
 	end
 
 	return low
+end
+
+"""Gurobi solver"""
+function gurobisolver(
+	A::SparseMatrixCSC;
+	alpha::Float64 = 0.,
+	beta::Float64 = 0.,
+	gamma::Float64 = 0.,
+	maxtime::Float64 = 60.
+)::SparseVector
+	model = Model(Gurobi.Optimizer)
+	set_silent(model)
+	set_time_limit_sec(model, maxtime)
+
+	n = size(A, 1)
+	K = Vector(connectivity(A))
+	A = Array(A)
+
+	@variable(model, x[1:n], Bin)
+
+	if alpha == beta == gamma == 0.
+		@constraint(model, (1 .- A) * x .<= (n .- K) .* (1 .- x))
+	else
+		@variable(model, y[1:n])
+		@constraint(model, sum(y) <= beta * sum(x) + gamma)
+		@constraint(model, ((1 - alpha) .- A) * x .- (1 - alpha) * (n .- K) .* (1 .- x) .<= y)
+		@constraint(model, -alpha * K .* x .<= y)
+	end
+
+	@objective(model, Max, sum(x))
+
+	optimize!(model)
+
+	println(raw_status(model))
+
+	return sparse(convert.(Int, value.(x)))
 end
 
 """Return the element of `itr` whose value in `f` is optimal."""

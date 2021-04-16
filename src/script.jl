@@ -37,18 +37,26 @@ end
 ## Tolerance function
 C = tryparse(Float64, args["tol"])
 
+alpha = 0.
+beta = 0.
+gamma = 0.
+
 if isnothing(C)
 	if args["tol"] == "lin"
-		tol = n -> max(0, n - 2)
+		tol = n -> n / 2
+		beta = 1.
 	elseif args["tol"] == "log"
 		tol = n -> log1p(n) * (n - 1) / 2
 	elseif args["tol"] == "root"
 		tol = n -> sqrt(n) * (n - 1) / 2
 	else  # half
 		tol = n -> n * (n - 1) / 4
+		alpha = .5
+		beta = -alpha
 	end
 else
 	tol = n -> C
+	gamma = 2 * C
 end
 
 ## Overlap
@@ -83,8 +91,7 @@ println()
 println("Blocks")
 println("≡≡≡≡≡≡")
 
-list = blocks(A)
-@time blocks(A)
+list = @time blocks(A)
 
 sort!(list, by=length, rev=true)
 
@@ -113,20 +120,23 @@ for i in 1:2
 	@time pivot(B)
 	println()
 
-	## Heuristics
 	for (name, routine) in [
+		("Solver", gurobisolver),
 		("Best-In", bestin),
 		("Worst-Out", worstout),
 		("Simulated-Annealing", annealing)
 	]
-		x = routine(B, f=tol)
-
 		println(name)
 		println(repeat('-', length(name)))
+
+		if name == "Solver"
+			@time x = routine(B, alpha=alpha, beta=beta, gamma=gamma)
+		else
+			@time x = routine(B, f=tol)
+		end
+
 		println("|M| = $(nnz(x))")
 		println("|E ∩ M×M| = $(x' * B * x)")
-
-		@time routine(B, f=tol)
 		println()
 	end
 end
