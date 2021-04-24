@@ -74,16 +74,16 @@ S, genes = load(args["input"])
 println("Stats")
 println("≡≡≡≡≡")
 
-println("Number of genes: $(length(genes))")
-println("Number of co-expressions: $(nnz(S))")
+println("Number of genes: $(vertices(S))")
+println("Number of co-expressions: $(edges(S))")
 
 # Adjacency Matrix
 A = adjacency(S)
-K = Vector(connectivity(A))
+K = Vector(degree(A))
 
-println("Mean connectivity: $(mean(K))")
-println("Median connectivity: $(median(K))")
-println("Max connectivity: $(maximum(K))")
+println("Mean degree: $(mean(K))")
+println("Median degree: $(median(K))")
+println("Max degree: $(maximum(K))")
 println()
 
 # Blocks
@@ -112,9 +112,9 @@ for i in 1:2
 	idx = list[i]
 	B = A[idx, idx]
 
-	println("|V| = $(size(B, 1))")
-	println("|E| = $(nnz(B))")
-	println("√|E| = $(floor(Int, sqrt(nnz(B))))")
+	println("|V| = $(vertices(B))")
+	println("|E| = $(edges(B))")
+	println("√G = $(root(B))")
 	println("pivot(G) = $(pivot(B))")
 
 	@time pivot(B)
@@ -136,7 +136,7 @@ for i in 1:2
 		end
 
 		println("|M| = $(nnz(x))")
-		println("|E ∩ M×M| = $(x' * B * x)")
+		println("𝛿(M) = $(delta(B, x))")
 		println()
 	end
 end

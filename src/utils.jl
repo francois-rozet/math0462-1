@@ -28,9 +28,57 @@ function adjacency(S::SparseMatrixCSC; tau::Float64 = 0.)::SparseMatrixCSC
 	return convert.(Int, S .> tau)
 end
 
-"""Compute the connectivity vector of `A`."""
-function connectivity(A::SparseMatrixCSC)::SparseVector
+"""Compute the degree vector of `A`."""
+function degree(A::SparseMatrixCSC)::SparseVector
 	return A * diag(A)
+end
+
+"""Compute the number of vertices of `A`, i.e. |V|."""
+function vertices(A::SparseMatrixCSC)::Int
+	return nnz(diag(A))
+end
+
+"""Compute the number of edges of `A`, i.e. |E|."""
+function edges(A::SparseMatrixCSC)::Int
+	return (nnz(A) + vertices(A)) ÷ 2
+end
+
+"""Compute the number of missing edges in `A` for `x` to be a module, i.e. 𝛿(x)."""
+function delta(A::SparseMatrixCSC, x::SparseVector)::Int
+	return (nnz(x)^2 - x' * A * x) ÷ 2
+end
+
+"""Compute the root of `A`, i.e.
+	(1 + √(1 + 8 (|E| - |V|))) / 2 .
+"""
+function root(A::SparseMatrixCSC)::Int
+	rt = (1 + sqrt(1 + 8 * (edges(A) - vertices(A)))) / 2
+	return floor(Int, rt)
+end
+
+"""Compute the pivot of `A`.
+
+The pivot is the largest number `p` such that `p`
+is smaller than the degree of `p` vertices.
+"""
+function pivot(A::SparseMatrixCSC)::Int
+	K = degree(A)
+	K = sort(K.nzval, rev=true)
+
+	# Dichotomic search
+	low, up = 1, root(A)
+
+	while low < up
+		p = (low + up + 1) ÷ 2
+
+		if p > K[p]
+			up = p - 1
+		else
+			low = p
+		end
+	end
+
+	return low
 end
 
 """Find all block sub-matrices of `A`.
@@ -63,31 +111,6 @@ function blocks(A::SparseMatrixCSC)::Vector{Vector{Int}}
 	return list
 end
 
-"""Compute the pivot of `A`.
-
-The pivot is the largest number `p` such that `p`
-is smaller than the connectivity of `p` vertices.
-"""
-function pivot(A::SparseMatrixCSC)::Int
-	K = connectivity(A)
-	K = sort(K.nzval, rev=true)
-
-	# Dichotomic search
-	low, up = 1, floor(Int, sqrt(nnz(A)))
-
-	while low < up
-		p = (low + up + 1) ÷ 2
-
-		if p > K[p]
-			up = p - 1
-		else
-			low = p
-		end
-	end
-
-	return low
-end
-
 """Gurobi solver"""
 function gurobisolver(
 	A::SparseMatrixCSC;
@@ -101,17 +124,17 @@ function gurobisolver(
 	set_time_limit_sec(model, maxtime)
 
 	n = size(A, 1)
-	K = Vector(connectivity(A))
+	K = Vector(degree(A))
 	A = Array(A)
 
 	@variable(model, x[1:n], Bin)
 
 	if alpha == beta == gamma == 0.
-		@constraint(model, (1 .- A) * x .<= (n .- K) .* (1 .- x))
+		@constraint(model, [i=1:n, j=1:i-1], (1 - A[i, j]) * (x[i] + x[j] - 1) <= 0)
 	else
 		@variable(model, y[1:n])
 		@constraint(model, sum(y) <= beta * sum(x) + gamma)
-		@constraint(model, ((1 - alpha) .- A) * x .- (1 - alpha) * (n .- K) .* (1 .- x) .<= y)
+		@constraint(model, (1 - alpha .- A) * x .- (1 - alpha) * (n .- K) .* (1 .- x) .<= y)
 		@constraint(model, -alpha * K .* x .<= y)
 	end
 
@@ -159,7 +182,7 @@ function bestin(
 	edges = x' * K
 
 	K = Vector(K)
-	C = Vector(connectivity(A))
+	C = Vector(degree(A))
 
 	while !isempty(V) && maxiter != 0
 		i, (k, _) = findopt(i -> (K[i], C[i]), V; comp=(a, b) -> a > b)
