@@ -1,0 +1,350 @@
+\documentclass[a4paper, 12pt]{article}
+
+%%%%%%%%%%%%
+% Packages %
+%%%%%%%%%%%%
+
+\usepackage[french, english]{babel}
+\usepackage[noheader]{packages/sleek}
+\usepackage{packages/sleek-theorems}
+
+%%%%%%%%%%%%%%
+% Title-page %
+%%%%%%%%%%%%%%
+
+\title{\vspace{-2cm}Discrete optimization - Project \\[0.25em]Module analysis in cancer diagnosis}
+\author{%
+Maxime \textsc{Meurisse} (s161278)\\%
+François \textsc{Rozet} (s161024)%
+}
+\date{\today}
+
+%%%%%%%%%%%%%%%%
+% Bibliography %
+%%%%%%%%%%%%%%%%
+
+\addbibresource{./resources/bib/references.bib}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    
+    \section*{Notations}
+    
+    Let $S = (s_{ij}) \in \mathbb{R}^{n \times n}$ be the pairwise co-expression matrix of $n$ genes in a disease. By definition, $s_{ij} = s_{ji}$ and we impose $s_{ii} = \infty$ for all $i, j = 1, 2, \dots, n$. Assuming an arbitrary threshold $\tau \in \mathbb{R}$, we define the \emph{undirected graph} $G = (V, E)$, where $V = \cbk{1, 2, \dots, n}$ and
+    \begin{equation}
+       E = \cbk{(i, j): s_{ij} \geq \tau \mid i, j \in V}
+    \end{equation}
+    are respectively the vertex and edge sets of $G$. We denote $A_G = (a_{ij})$ the \emph{adjacency matrix} of $G$, where
+    \begin{equation}
+        a_{ij} = \begin{cases}
+            1 & \text{if } (i, j) \in E \\
+            0 & \text{else}
+        \end{cases}
+    \end{equation}
+    for $i, j \in V$. Finally, we denote
+    \begin{equation}
+        k_i = \sum_{j = 1}^{n} a_{ij}
+    \end{equation}
+    the \emph{degree} of the vertex $i \in V$, \ie{} the number of vertices adjacent to $i$ in $G$. It should be noted that all self-loops $(i, i) \in E$ and, therefore, $a_{ii} = 1$ for all $i \in V$.
+    
+    \subsection*{Module}
+    
+    A module $M$, or a \emph{clique} \cite{bomze1999maximum, wiki2020clique}, is a subset of $V$ such that all vertices are \emph{pairwise adjacent}, \ie{} $(i, j) \in E$ for all $i, j \in M$. This is equivalently expressed as $M \times M = M^2 \subseteq E$ or $M^2 \setminus E = \varnothing$. The latter is especially interesting as $M^2 \setminus E$ can be computed efficiently if $G$ is sparse. We denote
+    \begin{equation} \label{eq:delta}
+        \delta(M) = \abs{M^2 \setminus E} = \abs{\cbk{(i, j): a_{ij} = 0 \mid (i, j) \in M^2}},
+    \end{equation}
+    the number of missing edges in $E$ for $M$ to be a \emph {proper} module.
+
+    In the following, a module $M$ is sometimes represented as a binary vector $x = (x_i) \in \cbk{0, 1}^n$ where $x_i = 1$ if $i \in M$. This notation leads
+    \begin{equation}
+        \abs{M} = \sum_{i \in V} x_i = \sum_{i \in V} \abs{x_i} = \norm{x}_1
+    \end{equation}
+    and, from \eqref{eq:delta},
+    \begin{equation}
+        \delta(M) = \frac{1}{2} \sum_{i \in V} \sum_{j \in V} x_i (1 - a_{ij}) x_j .
+    \end{equation}
+    
+    \newpage
+    
+    \section*{Questions}
+    
+    \begin{enumerate}[leftmargin=*]
+        \item Finding the largest module comes down to maximizing the size $\abs{M}$ while keeping $\delta(M) = 0$. This can be expressed as the following (mixed-)integer optimization problem.
+        \begin{alignat*}{3}
+            \max_x && \quad & \norm{x}_1 \\
+            \text{s.t.} &&& \sum_{i \in V} \sum_{j \in V} x_i (1 - a_{ij}) x_j = 0 \\
+            &&& x \in \cbk{0, 1}^n 
+        \end{alignat*}
+        Unfortunately, this formulation is quadratically constrained and, therefore, cannot be solved using (linear) mixed-integer programming (MIP). However, we observe that each term of the sum is non-negative, implying that either $1 - a_{ij}$ or $x_i x_j$ has to be null. Hence, the previous formulation is equivalent to
+        \begin{alignat*}{3}
+            \max_x && \quad & \norm{x}_1 \\
+            \text{s.t.} &&& (1 - a_{ij}) (x_i + x_j - 1) \leq 0, \quad \forall i, j \in V \\
+            &&& x \in \cbk{0, 1}^n
+        \end{alignat*}
+        which is a linearly constrained formulation for the largest module problem.
+        
+        In addition, we define the Best-In and Worst-Out heuristics (\cf{} Algorithms \ref{alg:best-in} and \ref{alg:worst-out}).
+        
+        \begin{algorithm}[h]
+            \begin{algorithmic}[1]
+    			\Function{Best-In}{$G, M$}
+    				\While{$V \neq M$} \Comment{Unless the module contains all vertices}
+    					\State $i \gets \arg\max_{i \in V \setminus M} k_i + n \sum_{j \in M} a_{ij}$ \Comment{Find the one with the best connections}
+    					\If{$\delta(M \cup \cbk{i}) = 0$} \Comment{If it is adjacent to all current vertices}
+    					    \State $M \gets M \cup \cbk{i}$ \Comment{Add it in the module}
+    					\Else{} \Break
+    					\EndIf
+    				\EndWhile
+    				\State \Return $M$
+    			\EndFunction
+    		\end{algorithmic}
+    		\caption{Best-In heuristic}
+		    \label{alg:best-in}
+		\end{algorithm}
+		
+		\vspace{-1em}
+        
+        \begin{algorithm}[h]
+            \begin{algorithmic}[1]
+    			\Function{Worst-Out}{$G, M$}
+    				\While{$\delta(M) \neq 0$} \Comment{Until all vertices are adjacent}
+    					\State $i \gets \arg\min_{i \in M} \sum_{j \in M} a_{ij}$ \Comment{Find the one with the worst connections}
+    					\State $M \gets M \setminus \cbk{i}$ \Comment{Remove it from the module}
+    				\EndWhile
+    				\State \Return $M$
+    			\EndFunction
+    		\end{algorithmic}
+    		\caption{Worst-Out heuristic}
+		    \label{alg:worst-out}
+		\end{algorithm}
+		
+		We also implement the simulated annealing (meta-)heuristic (\cf{} Appendix \ref{sec:Simulated annealing}).
+		
+		\item We define a \emph{quasi}-module, or \emph{quasi}-clique \cite{pattillo2013maximum}, as a subset $M \subseteq V$ such that the number of edges that are missing in $E$ for $M$ to be a proper module is smaller than a certain \emph{tolerance}, function of $\abs{M}$.
+		\begin{equation} \label{eq:tolerance}
+		    \delta(M) \leq f(\abs{M})
+		\end{equation}
+		For this question, the tolerance function is a constant $C \in \mathbb{R}_+$. Therefore, $x$ represents a quasi-module iff there exists $y = (y_i) \in \mathbb{R}^n$ such that
+		\begin{equation}
+		    \sum_{i \in V} y_i \leq 2C
+		\end{equation}
+		and
+		\begin{equation} \label{eq:y}
+		    \sum_{j \in V} x_i (1 - a_{ij}) x_j \leq y_i, \quad \forall i \in V.
+		\end{equation}
+		By linearizing \eqref{eq:y}, we obtain that finding the largest quasi-module is equivalent to solving
+		\begin{alignat*}{3}
+            \max_{x} && \quad & \norm{x}_1 \\
+            \text{s.t.} &&& \sum_{i \in V} y_i \leq 2C \\
+            &&& \sum_{j \in V} (1 - a_{ij}) (x_i + x_j - 1) \leq y_i, \quad \forall i \in V \\
+            &&& x \in \cbk{0, 1}^n, y \in \mathbb{R}_+^n
+        \end{alignat*}
+        which is a linearly constrained formulation that can be solved using MIP.
+        
+        Concerning the heuristics, only the stopping conditions have to be altered to take into account the tolerance. For instance, in Algorithm \ref{alg:best-in}, $\delta(M \cup \cbk{i}) = 0$ becomes $\delta(M \cup \cbk{i}) \leq C$ and, in Algorithm \ref{alg:worst-out}, $\delta(M) \neq 0$ becomes $\delta(M) > C$.
+        
+        \item For this question, $f$ is a strictly increasing function of the size. Additionally, unless $f(n)$ is a polynomial of $n$, it won't be possible to formulate the problem as a linear optimization problem. Furthermore, if the order of the polynomial is strictly greater than $2$, there will be a size above which the tolerance allows arbitrarily large quasi-modules, without constraints on the edges. For the same reason, the coefficient of the second order term has to be strictly smaller than $\frac{1}{2}$.
+
+        Therefore, our tolerance function is expressed as
+        \begin{equation}
+            f(n) = \frac{1}{2} (\alpha n^2 + \beta n + \gamma)
+        \end{equation}
+        where $\alpha \in \left[0, 1\right)$, $\beta \in \mathbb{R}$ and $\gamma \in \mathbb{R}_+$, such that $\alpha + \beta \geq 0$. Therefore, $x$ represents a quasi-module iff there exists $y = (y_i) \in \mathbb{R}^n$ such that
+        \begin{equation}
+            \sum_{i \in V} y_i \leq \beta \sum_{i \in V} x_i + \gamma
+        \end{equation}
+        and
+        \begin{equation} \label{eq:y-alpha}
+            \sum_{j \in V} x_i (1 - \alpha - a_{ij}) x_j \leq y_i .
+        \end{equation}
+        By linearizing \eqref{eq:y-alpha}, the optimization problem becomes
+        \begin{alignat*}{3}
+            \max_{x} && \quad & \norm{x}_1 \\
+            \text{s.t.} &&& \sum_{i \in V} y_i \leq \beta \sum_{i \in V} x_i + \gamma \\
+            &&& \sum_{j \in V} (1 - \alpha - a_{ij}) (x_i + x_j - 1) \leq y_i, \quad \forall i \in V \\
+            &&& - \alpha k_i x_i \leq y_i, \quad \forall i \in V \\
+            &&& x \in \cbk{0, 1}^n, y \in \mathbb{R}^n
+        \end{alignat*}
+        which is a linearly constrained formulation. Interestingly, this formulation is strictly equivalent to the previous one when $\alpha = \beta = 0$.
+        
+        Once again, it is straightforward to adapt the heuristics: $\delta(M \cup \cbk{i}) = 0$ becomes $\delta(M \cup \cbk{i}) \leq f(\abs{M} + 1)$, in Algorithm \ref{alg:best-in}, and $\delta(M) \neq 0$ becomes $\delta(M) > f(\abs{M})$, in Algorithm \ref{alg:worst-out}. Furthermore, these heuristics are not limited to polynomial tolerance functions (\cf{} Appendix \ref{sec:Valid tolerance}).
+        
+        \item To find a covering, we take inspiration in the \emph{iterative clique enumeration} (ICE) used by \textcite{shi2010co}. The principle of our procedure is to find (an approximation of) the largest (quasi-)module in the graph, remove its vertices from the graph, and restart until the graph is empty. Eventually, the sequence $M_i$ of (quasi-)modules covers the whole set of vertices, without overlap.
+        
+        The main drawback of this procedure is that, except for $M_1$, the (quasi-)modules are limited to a subset of the vertices. To overcome this limitation, we perform a second step to find the largest (quasi-)module $M_i'$ in the whole graph such that $M_i' \supseteq M_i$.
+        
+        In our implementation, $M_i$ and $M'_i$ are determined using our greedy heuristics (\cf{} Algorithms \ref{alg:best-in} and \ref{alg:worst-out}).
+        \begin{align}
+            M_i & = \textsc{Worst-Out}\rbk{G, V \setminus \bigcup_{j = 1}^{i - 1} M_j} \\
+            M_i' & = \textsc{Best-In}\rbk{G, M_i}
+        \end{align}
+        
+        To limit the overlap generated by the second step, we can limit the size of $M_i'$ with respect to $\abs{M_i}$ (\eg{} $\abs{M_i'} \leq \abs{M_i} + \log \abs{M_i}$), which requires very few modifications to Algorithm \ref{alg:best-in}.
+        
+        Finally, if $G$ is sparse, it is likely that it is \emph{disconnected}, \ie{} that there are vertices that cannot be joined using the existing edges. If it is the case, $G$ can be efficiently segmented into independent \emph{connected} sub-graphs \cite{wiki2020connectivity}, for which it is easier (less expensive) to find the largest (quasi-)modules and a covering. An additional benefit is that, since they can be treated separately, the sub-graphs can be processed in \emph{parallel}. Thus, in our implementation(s), the first step is always to \emph{segment} the graph into independent connected sub-graphs.
+    \end{enumerate}
+    
+    \newpage
+    
+    \printbibliography
+    
+    \newpage
+    
+    \appendix
+    
+    \section{Upper bounds} \label{sec:Upper bounds}
+    
+    By definition, if $M \subseteq V$ is a module, we know that $M^2 \subseteq E$. Therefore, we have
+    \begin{equation}
+        \abs{E} - \abs{V} \geq \abs{M^2} - \abs{M} = \binom{\abs{M}}{2} = \frac{\abs{M}^2 - \abs{M}}{2}
+    \end{equation}
+    which is easily transformed into
+    \begin{equation} \label{eq:first-bound}
+        \abs{M} \leq \frac{1 + \sqrt{1 + 8 (\abs{E} - \abs{V})}}{2} .
+    \end{equation}
+    Hence, $\omega(G)$, the size of the largest module in $G$, is \emph{bounded} by the hereabove right-hand side, which we refer to as $\sqrt{G}$.
+    Going further, one can convince itself that $\omega(G)$ is bounded by the \emph{pivot} of $G$, \ie{} the largest number $p$ such that $p$ is smaller than the degree of $p$ vertices.
+    \begin{equation}
+        \omega(G) \leq \mathrm{pivot}(G) = \max \cbk{p: \abs{\cbk{i: k_i \geq p \mid i \in V}} \geq p \mid p \in \mathbb{N}}
+    \end{equation}
+    As it is always smaller than $\sqrt{G}$, the pivot provides a stricter bound on $\omega(G)$.
+    
+    Importantly, unlike $\omega(G)$, computing the pivot is \emph{tractable} and can be performed efficiently, as demonstrated by Algorithm \ref{alg:pivot}.
+    
+    \begin{algorithm}[h]
+        \begin{algorithmic}[1]
+    			\Function{Pivot}{$G$}
+    				\State $K \gets \sbk{k_1, k_2, \dots, k_n}$ \Comment{Array of vertex degrees}
+    				\State $K \gets \Call{Sort}{K}$ \Comment{Sort from largest to smallest}
+    				\State $l, u \gets 1, \floor{\sqrt{G}}$
+    				\While{$l < u$} \Comment{Dichotomic search}
+    					\State $p \gets \ceil{\frac{l + u}{2}}$
+    					\If{$p > K[p]$}
+    					    \State $u \gets p - 1$
+    					\Else
+    					    \State $l \gets p$
+    					\EndIf
+    				\EndWhile
+    				\State \Return $l$
+    			\EndFunction
+    		\end{algorithmic}
+    		\caption{Efficient computation of the pivot of $G$}
+		    \label{alg:pivot}
+    \end{algorithm}
+    
+    \begin{note}
+        This section was written \emph{before} looking at the literature. Unsurprisingly, our results had already been demonstrated in the past; notably by \textcite{amin1972upper}.
+    \end{note}
+    
+    \section{Valid tolerance} \label{sec:Valid tolerance}
+    
+    Let be any function $f: \mathbb{N} \mapsto \mathbb{R}$. We say that $f$ is a \emph{valid} tolerance function iff
+    \begin{enumerate}[noitemsep]
+        \item the empty set is a quasi-module;
+        \begin{equation}
+            \delta(\varnothing) \leq f(0)
+        \end{equation}
+        \item a super-set of a quasi-module with the same number of missing edges is a quasi-module;
+        \begin{equation}
+            \delta(M) = \delta(N) \leq f(\abs{M}) \Rightarrow \delta(N) \leq f(\abs{N}), \quad \forall M \subseteq N \subseteq V
+        \end{equation}
+        \item a non-empty quasi-module has at least one direct subset which is itself a quasi-module;
+        \begin{equation}
+            \delta(M) \leq f(\abs{M}) \Rightarrow \min_{i \in M} \delta(M \setminus \cbk{i}) \leq f(\abs{M} - 1), \quad \forall M \subseteq V: M \neq \varnothing
+        \end{equation}
+    \end{enumerate}
+    for any graph $G = (E, V)$ derived from a pairwise co-expression matrix $S$.
+    
+    The first condition implies that $f(0) \geq 0$ since $\delta(\varnothing) = 0$, by definition. From the second condition, we derive that $f(\abs{N}) \geq f(\abs{M})$ for all $M \subseteq N$. Hence, $f(n + 1) \geq f(n) \geq 0$ for all $n \in \mathbb{N}$, \ie{} $f$ is an \emph{increasing positive} function.
+    
+    Concerning the third condition, we observe that, in any non-empty quasi-module $M$, there is at least one vertex for which the number of missing edges is greater than $\frac{ 2 \delta(M)}{\abs{M}}$, the average number of missing edges per vertex. Therefore, in the worst case,
+    \begin{equation}
+        \min_{i \in M} \delta(M \setminus \cbk{i}) = \delta(M) - \ceil{\frac{2 \delta(M)}{\abs{M}}} .
+    \end{equation}
+    In consequence, for $f$ to be valid, it has to satisfy
+    \begin{equation}
+        \delta(M) \leq f(\abs{M}) \Rightarrow \delta(M) - \ceil{\frac{2 \delta(M)}{\abs{M}}} \leq f(\abs{M} - 1)
+    \end{equation}
+    for any non-empty $M \subseteq V$. If $\abs{M} \in \cbk{1, 2}$,
+    \begin{equation}
+        \delta(M) - \ceil{\frac{2 \delta(M)}{\abs{M}}} = \delta(M) - \frac{2 \delta(M)}{\abs{M}} \leq 0
+    \end{equation}
+    which always fulfills the condition, since $f(n) \geq 0$. Otherwise, the largest value $\delta(M)$ can take is
+    \begin{equation}
+        \min \cbk{ \floor{f(\abs{M})}, \binom{\abs{M}}{2} }
+    \end{equation}
+    and the condition becomes
+    \begin{equation}
+        \min \cbk{ \floor{f(\abs{M})} - \ceil{\frac{2\floor{f(\abs{M})}}{\abs{M}}}, \binom{\abs{M} - 1}{2}} \leq \floor{f(\abs{M} - 1)}
+    \end{equation}
+    
+    Therefore,
+    \begin{equation}
+        f(n) \geq \binom{n}{2} \Rightarrow f(n - 1) \geq \binom{n - 1}{2}
+    \end{equation}
+    and
+    \begin{equation}
+        f(n) < \binom{n}{2} \Rightarrow \floor{f(n)} - \floor{f(n - 1)} \leq \ceil{\frac{2 \floor{f(n)}}{n}} \leq n - 1
+    \end{equation}
+    for all $n \in \mathbb{N} \setminus \cbk{0, 1, 2}$.
+    
+    Interesting examples of valid tolerance functions are
+    \begin{align*}
+        f(n) & = C \in \mathbb{R}^+ \\
+        f(n) & = \max \cbk{0, n - 2} \\
+        f(n) & = \log(n + 1) (n - 1) \\
+        f(n) & = \sqrt{n} (n - 1) \\
+        f(n) & = \frac{n}{4} (n - 1)
+    \end{align*}
+    
+    \section{Simulated annealing} \label{sec:Simulated annealing}
+    
+    The principle of \emph{simulated annealing} is to visit the set of all possible states/modules through small iterative transitions. These transitions are guided by the maximisation (minimisation) of an objective (cost) function; in our case $\abs{M}$. We choose a temperature such that the distribution of visited states is
+    \begin{equation}
+        \pi(M) \propto \begin{cases}
+            \alpha_t^{\abs{M}} & \text{if } \delta(M) = 0 \\
+            0 & \text{else}
+        \end{cases}
+    \end{equation}
+    for all $M \subseteq V$, with
+    \begin{equation}
+        \alpha_t = 4 + \num{0.5} \log_{10} t
+    \end{equation}
+    for $t = 1, 2, \dots, T$.
+	
+	\begin{algorithm}[h]
+        \begin{algorithmic}[1]
+			\Function{Simulated-Annealing}{$G, M$}
+				\State $Best \gets M$
+				\For{$t \in \cbk{1, 2, \dots, T}$} \Comment{For a fixed number of steps}
+				    \State $i \gets \Call{Sample}{V}$ \Comment{Draw a vertex uniformly}
+				    \If{$i \in M$}
+				        \State $M' \gets M \setminus \cbk{i}$ \Comment{If it is already in, remove it}
+				    \Else
+				        \State $M' \gets M \cup \cbk{i}$ \Comment{Otherwise, add it}
+				    \EndIf
+				    \If{$\delta(M') = 0$} \Comment{If all vertices are adjacent}
+				        \State $M \gets M'$ with probability $p = \min\cbk{1, \alpha_t^{\abs{M'} - \abs{M}}}$ \Comment{Apply the change}
+				        \If{$\abs{Best} < \abs{M}$} $Best \gets M$ \EndIf
+				    \EndIf
+				\EndFor
+				\State \Return $Best$
+			\EndFunction
+		\end{algorithmic}
+		\caption{Simulated-Annealing heuristic}
+	    \label{alg:simulated-annealing}
+	\end{algorithm}
+	
+	An important condition for this algorithm (\cf{} Algorithm \ref{alg:simulated-annealing}) to work is that the Markov chain defined by the transitions is \emph{irreducible}, \ie{} that there exists a walkable path between any two states. This is the case of our algorithm since 1. $\varnothing$ is a subset of all modules, 2. any subset of a module is itself a module and 3. the path between a module and any of its subsets is two-way walkable.
+	
+	Additionally, we consider a more refined objective function
+	\begin{equation}
+	    \abs{M} + \frac{1}{\max_{i \in V} k_i} \sum_{i \in M} k_i
+	\end{equation}
+	which leads a distribution $\pi(M)$ that is favorable to large modules $M$ whose vertices have high degrees. This objective \enquote{guides} the algorithm towards \emph{dense} neighborhoods in the graph.
+    
+\end{document}
