@@ -144,7 +144,7 @@ function gurobisolver(
 
 	println(raw_status(model))
 
-	return sparse(convert.(Int, value.(x)))
+	return sparse(round.(Int, value.(x)))
 end
 
 """Return the element of `itr` whose value in `f` is optimal."""
@@ -174,25 +174,23 @@ function bestin(
 	end
 
 	M = Set(x.nzind)
-	V = Set(diag(A).nzind)
-	setdiff!(V, M)
 
-	K = A * x
+	V = setdiff(Set(diag(A).nzind), M)
+	K = Vector(degree(A))
+
+	d = Vector(A * x)
 	vertices = nnz(x)
-	edges = x' * K
-
-	K = Vector(K)
-	C = Vector(degree(A))
+	edges = x' * d
 
 	while !isempty(V) && maxiter != 0
-		i, (k, _) = findopt(i -> (K[i], C[i]), V; comp=(a, b) -> a > b)
+		i, (d_i, _) = findopt(i -> (d[i], K[i]), V; comp=(a, b) -> a > b)
 
 		n = vertices + 1
-		m = edges + 2 * k + 1
+		m = edges + 2 * d_i + 1
 
 		if n^2 - m <= 2 * f(n)
 			push!(M, i)
-			K .+= A[:, i]
+			d .+= A[:, i]
 			vertices = n
 			edges = m
 		else
@@ -218,64 +216,63 @@ function worstout(
 
 	M = Set(x.nzind)
 
-	K = A * x
+	d = Vector(A * x)
 	vertices = nnz(x)
-	edges = x' * K
-
-	K = Vector(K)
+	edges = x' * d
 
 	while vertices^2 - edges > 2 * f(vertices)
-		i, k = findopt(i -> K[i], M)
+		i, d_i = findopt(i -> d[i], M)
 
 		delete!(M, i)
-		K .-= A[:, i]
+		d .-= A[:, i]
 		vertices -= 1
-		edges -= 2 * k - 1
+		edges -= 2 * d_i - 1
 	end
 
 	return sparsevec(collect(M), 1, size(A, 1))
 end
 
-"""Simulated-Annealing meta-heuristic"""
+"""Simulated annealing meta-heuristic"""
 function annealing(
 	A::SparseMatrixCSC,
 	x::Union{SparseVector, Nothing} = nothing;
 	f::Function = n -> 0,
-	alpha::Float64 = 0.5,
+	alpha::Function = t -> 4 + 0.5 * log10(t),
 	steps::Int = 1000000
 )::SparseVector
-	V = diag(A).nzind
-
 	if isnothing(x)
 		x = spzeros(Int, size(A, 1))
 	end
 
-	K = A * x
+	V = diag(A).nzind
+	K = Vector(degree(A))
+	delta = 1 .+ K / maximum(K)
+
+	d = A * x
 	vertices = nnz(x)
-	edges = x' * K
+	edges = x' * d
 
 	best = copy(x)
 
-	for _ in 1:steps
+	for t in 1:steps
 		i = rand(V)
 
-		remove = Bool(x[i])
-		if remove
+		if Bool(x[i])
 			n = vertices - 1
-			m = edges - 2 * K[i] + 1
+			m = edges - 2 * d[i] + 1
 		else
 			n = vertices + 1
-			m = edges + 2 * K[i] + 1
+			m = edges + 2 * d[i] + 1
 		end
 
 		if n^2 - m <= 2 * f(n)
-			if (remove ? rand() < alpha : true)
+			if (n < vertices ? rand() < alpha(t)^-delta[i] : true)
 				x[i] = 1 - x[i]
 
-				if remove
-					K -= A[:, i]
+				if n < vertices
+					d -= A[:, i]
 				else
-					K += A[:, i]
+					d += A[:, i]
 				end
 
 				vertices = n
@@ -289,6 +286,15 @@ function annealing(
 	end
 
 	return best
+end
+
+"""Warm-Start simulated annealing"""
+function warmstart(
+	A::SparseMatrixCSC;
+	f::Function = n -> 0,
+)::SparseVector
+	x = worstout(A, f=f)
+	return annealing(A, x, f=f)
 end
 
 """Iterative clique enumeration heuristic"""

@@ -104,7 +104,7 @@ println("Median block size: $(median(lengths))")
 println("Max block size: $(maximum(lengths))")
 println()
 
-for i in 1:2
+for i in 1:1
 	## Analysis
 	println("Block $i")
 	println("=======")
@@ -124,7 +124,8 @@ for i in 1:2
 		("Solver", gurobisolver),
 		("Best-In", bestin),
 		("Worst-Out", worstout),
-		("Simulated-Annealing", annealing)
+		("Simulated annealing", annealing),
+		("Warm-Start annealing", warmstart)
 	]
 		println(name)
 		println(repeat('-', length(name)))
