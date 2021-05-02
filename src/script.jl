@@ -13,7 +13,7 @@ function parse()
 			required = true
 		"--output", "-o"
 			help = "output file (.json)"
-			default = nothing
+			default = "out.json"
 		"--tol"
 			help = "tolerance function"
 			default = "0"
@@ -26,13 +26,6 @@ function parse()
 end
 
 args = parse()
-
-## Output
-if isnothing(args["output"])
-	output = replace(args["input"], ".txt" => ".json")
-else
-	output = args["output"]
-end
 
 ## Tolerance function
 C = tryparse(Float64, args["tol"])
@@ -86,28 +79,28 @@ println("Median degree: $(median(K))")
 println("Max degree: $(maximum(K))")
 println()
 
-# Blocks
+# Sub-graphs
 
-println("Blocks")
-println("≡≡≡≡≡≡")
+println("Sub-graphs")
+println("≡≡≡≡≡≡≡≡≡≡")
 
 list = @time blocks(A)
 
 sort!(list, by=length, rev=true)
 
-println("Number of blocks: $(length(list))")
+println("Number of sub-graphs: $(length(list))")
 
 lengths = map(length, list)
 
-println("Mean block size: $(mean(lengths))")
-println("Median block size: $(median(lengths))")
-println("Max block size: $(maximum(lengths))")
+println("Mean sub-graph size: $(mean(lengths))")
+println("Median sub-graph size: $(median(lengths))")
+println("Max sub-graph size: $(maximum(lengths))")
 println()
 
 for i in 1:1
 	## Analysis
-	println("Block $i")
-	println("=======")
+	println("Sub-graph $i")
+	println("===========")
 
 	idx = list[i]
 	B = A[idx, idx]
@@ -137,6 +130,7 @@ for i in 1:1
 		end
 
 		println("|M| = $(nnz(x))")
+		println("f(|M|) = $(tol(nnz(x)))")
 		println("𝛿(M) = $(delta(B, x))")
 		println()
 	end
@@ -181,7 +175,7 @@ println("Median vertex coverage: $(median(cnt))")
 println("Max vertex coverage: $(maximum(cnt))")
 
 ## Export
-open(output, "w") do io
+open(args["output"], "w") do io
 	for M in modules
 		println(io, sort(genes[M]))
 	end

@@ -28,6 +28,24 @@ and load it with the `-J` (or `--sysimage`) flag.
 julia --project=. -J image.so path/to/script.jl
 ```
 
+## Usage
+
+The central file of this project is [`script.jl`](src/script.jl). It can be executed on any genomic co-expression file from [`resources/hsa/`](resources/hsa/).
+
+```bash
+julia --project=. -J image.so src/script.jl resources/hsa/BGSE1456.txt
+```
+
+The execution will display (on standard output) a few interesting metrics evaluated on the graph represented by the provided file. These metrics include, among others, the number of independent complete sub-graphs and, according to several algorithms, the size of the largest module in the largest sub-graph. It will also create a file (by default `out.json`) containing a covering of the genes.
+
+### Parameters
+
+A few parameters can be passed on to `script.jl` using flags. For example, to use a constant (*e.g.* `4.2069`) tolerance function,
+
+```bash
+julia --project=. -J image.so src/script.jl resources/hsa/BGSE1456.txt --tol 4.2069
+```
+
 ## Authors
 
 * **François Rozet** - [francois-rozet](https://github.com/francois-rozet)
