@@ -50,3 +50,7 @@ julia --project=. -J image.so src/script.jl resources/hsa/BGSE1456.txt --tol 4.2
 
 * **François Rozet** - [francois-rozet](https://github.com/francois-rozet)
 * **Maxime Meurisse** - [meurissemax](https://github.com/meurissemax)
+
+## Score
+
+This project received a score of 20/20.
